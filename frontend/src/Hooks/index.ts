@@ -39,12 +39,12 @@ export const useBlogs = () => {
     const [blogs, setBlogs] = useState<Blog[]>([]);
 
     useEffect(() => {
-        axios.get(`${BACKEND_URL}/api/v1/blog/bulk`, {
+        axios.get<{ blogs: Blog[] }>(`${BACKEND_URL}/api/v1/blog/bulk`, {
             headers: {
                 Authorization: localStorage.getItem("token")
             }
         })
-            .then(response => {
+            .then((response: AxiosResponse<{ blogs: Blog[] }>) => {
                 setBlogs(response.data.blogs);
                 setLoading(false);
             })
