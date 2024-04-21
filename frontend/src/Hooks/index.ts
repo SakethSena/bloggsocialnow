@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import axios from "axios";
+import axios, {AxiosResponse} from "axios";
 import { BACKEND_URL } from "../config";
 
 
@@ -17,12 +17,12 @@ export const useBlog = ({ id }: { id: string }) => {
     const [blog, setBlog] = useState<Blog>();
 
     useEffect(() => {
-        axios.get(`${BACKEND_URL}/api/v1/blog/${id}`, {
+        axios.get<{blog : Blog}>(`${BACKEND_URL}/api/v1/blog/${id}`, {
             headers: {
                 Authorization: localStorage.getItem("token")
             }
         })
-            .then(response => {
+            .then((response: AxiosResponse<{blog : Blog}>) => {
                 setBlog(response.data.blog);
                 setLoading(false);
             })

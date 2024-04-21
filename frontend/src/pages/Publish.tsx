@@ -1,5 +1,5 @@
 import {AppBar} from "../components/AppBar"
-import axios from "axios";
+import axios, {AxiosResponse} from "axios";
 import { BACKEND_URL } from "../config";
 import { useNavigate } from "react-router-dom";
 import { ChangeEvent, useState } from "react";
@@ -21,7 +21,7 @@ export const Publish = () => {
                     setDescription(e.target.value)
                 }} />
                 <button onClick={async () => {
-                    const response = await axios.post(`${BACKEND_URL}/api/v1/blog`, {
+                    const response :AxiosResponse<string> = await axios.post<string>(`${BACKEND_URL}/api/v1/blog`, {
                         title,
                         content: description
                     }, {

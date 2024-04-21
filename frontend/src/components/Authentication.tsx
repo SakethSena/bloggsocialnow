@@ -2,7 +2,7 @@ import {SignupInput} from "@sakethsenapathi/medium-common"
 import {Link, useNavigate } from "react-router-dom"
 import {ChangeEvent, useState} from "react"
 import { BACKEND_URL } from "../config";
-import axios from "axios"
+import axios, {AxiosResponse} from "axios"
 
 
 export const Authentication = ({type} : {type : "signup" | "signin"}) => {
@@ -18,8 +18,8 @@ export const Authentication = ({type} : {type : "signup" | "signin"}) => {
     async function sendRequest(){
         setLoading(true);
         try {
-        const response = await axios.post(`${BACKEND_URL}/api/v1/user/${type === "signup" ? "signup" : "signin"}`, content)
-        const jwt_token = response.data 
+        const response: AxiosResponse<string>= await axios.post<string>(`${BACKEND_URL}/api/v1/user/${type === "signup" ? "signup" : "signin"}` ,content)
+        const jwt_token: string = response.data 
         localStorage.setItem("token", jwt_token);
         navigate("/blogs")
         }
