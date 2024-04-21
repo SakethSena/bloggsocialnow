@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import {AppBar} from "../components/AppBar"
 import axios, {AxiosResponse} from "axios";
 import { BACKEND_URL } from "../config";

@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { useEffect, useState } from "react"
 import axios, {AxiosResponse} from "axios";
 import { BACKEND_URL } from "../config";

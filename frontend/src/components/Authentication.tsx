@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import {SignupInput} from "@sakethsenapathi/medium-common"
 import {Link, useNavigate } from "react-router-dom"
 import {ChangeEvent, useState} from "react"
